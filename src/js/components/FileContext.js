@@ -3,15 +3,36 @@ import React from 'react';
 import { withSnackbar } from 'notistack';
 
 import { UNABLE_TO_IMPORT } from 'constants/messages';
+import { load, save } from 'utils/storage';
 
 export const FileContext = React.createContext();
 
 class FileContextProvider extends React.Component {
 
     state = {
-        files: [],
+        files: load('files', []),
         selectedFileName: null,
         lastAddedFileName: null
+    }
+
+    componentDidMount() {
+        const firstFile = get(this.state.files, ['0', 'name'], null);
+        if (firstFile) {
+            this.setState({ selectedFileName: firstFile });
+        }
+    }
+
+    componentDidUpdate(previousProps, previousState) {
+        if (previousState.files !== this.state.files) {
+            try {
+                save('files', this.state.files);
+            } catch (error) {
+                this.props.enqueueSnackbar('Lokaler Speicher ist voll. Bitte einige Messungen entfernen.', {
+                    anchorOrigin: { vertical: 'bottom', horizontal: 'center' },
+                    autoHideDuration: 6000
+                });
+            }
+        }
     }
 
     addFile = (file) => {
@@ -25,7 +46,7 @@ class FileContextProvider extends React.Component {
     removeFile = (fileName) => {
         const { files, selectedFileName } = this.state;
         const newFiles = reject(files, ['name', fileName]);
-        
+
         const newSelectedFileName = (fileName === selectedFileName)
                                   ? get(newFiles, ['0', 'name'], null)
                                   : selectedFileName;
@@ -70,5 +91,7 @@ class FileContextProvider extends React.Component {
         );
     }
 }
+
+FileContextProvider.contextType = FileContext;
 
 export default withSnackbar(FileContextProvider);
