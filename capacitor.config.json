@@ -1,0 +1,9 @@
+{
+  "appId": "de.vcdsgraph.mobile",
+  "appName": "VCDS Graph",
+  "webDir": "dist",
+  "bundledWebRuntime": false,
+  "android": {
+    "allowMixedContent": false
+  }
+}
