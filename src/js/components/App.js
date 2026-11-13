@@ -9,7 +9,9 @@ import AppLayout from 'components/AppLayout';
 
 const theme = createMuiTheme({
     palette: {
-        primary: blue
+        type: 'dark',
+        primary: blue,
+        background: { default: '#121212', paper: '#1e1e1e' }
     }
 });
 
