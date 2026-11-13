@@ -2,6 +2,12 @@ export const DEFAULT_HEIGHT = 450;
 export const MIN_HEIGHT = 125;
 
 export const GLOBAL_OPTIONS = {
+    chart: { backgroundColor: '#1e1e1e', plotBackgroundColor: '#1e1e1e' },
+    title: { style: { color: '#eeeeee' } },
+    subtitle: { style: { color: '#bbbbbb' } },
+    xAxis: { labels: { style: { color: '#cccccc' } }, lineColor: '#666666', tickColor: '#666666', gridLineColor: '#444444' },
+    yAxis: { labels: { style: { color: '#cccccc' } }, lineColor: '#666666', tickColor: '#666666', gridLineColor: '#444444' },
+    tooltip: { backgroundColor: '#292929', style: { color: '#ffffff' } },
     lang: {
         numericSymbols: null
     }
@@ -82,7 +88,7 @@ export const OPTIONS = {
     },
     legend: {
         itemStyle: {
-            color: '#333333',
+            color: '#eeeeee',
             cursor: 'pointer',
             fontSize: '12px',
             fontWeight: 500,
