@@ -1,11 +1,11 @@
 export const save = (key, item) => {
-    if (localStorage) {
+    if (typeof localStorage !== 'undefined') {
         localStorage.setItem(`vcds.${key}`, JSON.stringify(item));
     }
 };
 
 export const load = (key, defaultValue) => {
-    if (localStorage) {
+    if (typeof localStorage !== 'undefined') {
         const item = localStorage.getItem(`vcds.${key}`);
 
         if (item) {
